@@ -2261,7 +2261,7 @@ pub struct Shell {
     section_header_hover: Option<String>,
     section_menu_focus: FocusHandle,
     section_menu_active: Option<usize>,
-    /// A project header's `+` menu: new chat on main or in a new worktree.
+    /// A project header's `+` menu: new chat in the current checkout or in a new worktree.
     sidebar_new_chat_menu: Option<(String, Point<Pixels>)>,
     sidebar_new_chat_menu_focus: FocusHandle,
     sidebar_new_chat_menu_active: Option<usize>,

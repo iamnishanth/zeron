@@ -244,7 +244,7 @@ fn sidebar_worktree_nest(theme: &Theme, content: AnyElement) -> AnyElement {
 
 const SIDEBAR_NEW_CHAT_MENU: [(&str, &str, CheckoutPreset); 2] = [
     (
-        "New chat on main",
+        "New chat in current checkout",
         icons::GIT_BRANCH,
         CheckoutPreset::MainCheckout,
     ),
@@ -308,7 +308,7 @@ impl Shell {
         }
         let theme = Theme::of(cx).for_popup();
         let mut card = popover::popover_card(&theme)
-            .w(px(200.0))
+            .w(px(240.0))
             .flex()
             .flex_col()
             .track_focus(&self.sidebar_new_chat_menu_focus)
@@ -532,7 +532,10 @@ impl Shell {
             .children(block.new_chat.map(|(space_id, preset)| {
                 sidebar_new_chat_button(
                     format!("sidebar-worktree-new-chat-{key}"),
-                    "New chat in worktree".into(),
+                    match preset {
+                        CheckoutPreset::MainCheckout => "New chat in current checkout".into(),
+                        _ => "New chat in worktree".into(),
+                    },
                     group_name.clone(),
                     theme,
                     cx.listener(move |this, _, _, cx| {
