@@ -585,6 +585,7 @@ mod tests {
         cx: &mut Context<Shell>,
     ) {
         shell.settings.sidebar_organization = SidebarOrganization::ByProject;
+        shell.settings.sidebar_show_worktrees = true;
         shell.state.update(cx, |state, _| {
             state.workspace_scope = Some(WorkspaceScope::Local);
             state.local_device_id = Some("local".into());
@@ -702,6 +703,7 @@ mod tests {
         window
             .update(cx, |shell, _, cx| {
                 shell.settings.sidebar_organization = SidebarOrganization::ByProject;
+                shell.settings.sidebar_show_worktrees = true;
                 shell.state.update(cx, |state, _| {
                     state.workspace_scope = Some(WorkspaceScope::Local);
                     state.spaces = vec![serde_json::from_value(serde_json::json!({

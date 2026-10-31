@@ -1309,7 +1309,7 @@ impl Default for UiSettings {
             sidebar_show_pull_request: true,
             sidebar_show_project_filter: true,
             sidebar_show_archived: true,
-            sidebar_show_worktrees: true,
+            sidebar_show_worktrees: false,
             sidebar_collapsed_worktrees: std::collections::BTreeSet::new(),
             github_star_banner_dismissed: false,
             last_space_id: None,
@@ -3327,7 +3327,7 @@ mod tests {
             sidebar_show_pull_request: false,
             sidebar_show_project_filter: false,
             sidebar_show_archived: false,
-            sidebar_show_worktrees: false,
+            sidebar_show_worktrees: true,
             sidebar_collapsed_worktrees: std::collections::BTreeSet::from([
                 "checkout-a".to_string()
             ]),
@@ -3727,13 +3727,14 @@ mod tests {
         assert!(settings.sidebar_show_project_label);
         assert!(settings.sidebar_show_project_filter);
         assert!(settings.sidebar_show_archived);
-        assert!(settings.sidebar_show_worktrees);
+        assert!(!settings.sidebar_show_worktrees);
         let customized = UiSettings {
             sidebar_compact: false,
             sidebar_show_project_icon: false,
             sidebar_show_project_label: false,
             sidebar_show_project_filter: false,
             sidebar_show_archived: false,
+            sidebar_show_worktrees: true,
             sidebar_organization: SidebarOrganization::ByProject,
             ..settings
         };

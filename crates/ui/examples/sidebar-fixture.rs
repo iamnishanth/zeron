@@ -17,6 +17,7 @@ fn main() -> anyhow::Result<()> {
         settings.sidebar_compact = std::env::var_os("ZERON_SIDEBAR_COMPACT").is_some();
         settings.sidebar_show_project_label = std::env::var_os("ZERON_SIDEBAR_HIDE_LABEL").is_none();
         let worktrees = std::env::var_os("ZERON_SIDEBAR_WORKTREES").is_some();
+        settings.sidebar_show_worktrees = worktrees;
         let by_project = worktrees || std::env::var_os("ZERON_SIDEBAR_BY_PROJECT").is_some();
         settings.sidebar_organization = if by_project { settings::SidebarOrganization::ByProject } else { settings::SidebarOrganization::InOneList };
         settings.sidebar_width = 310.0;
